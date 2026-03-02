@@ -16,6 +16,7 @@ import {
     Activity,
     CreditCard
 } from 'lucide-react';
+import HeroAnimation from '../components/HeroAnimation';
 
 export default function LandingView() {
     return (
@@ -39,26 +40,33 @@ export default function LandingView() {
             {/* 2️⃣ Hero Section */}
             <section className="relative pt-20 pb-32 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-emerald-50 -z-10" />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-200">
-                        <Zap size={14} /> El futuro de tus finanzas
-                    </div>
-                    <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-tight mb-6">
-                        Toma el control de tu <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-600 to-emerald-500">
-                            salud financiera
-                        </span>
-                    </h1>
-                    <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-10 font-medium">
-                        Monitorea tu score, gestiona tus tarjetas y mejora tu perfil crediticio con herramientas inteligentes diseñadas para llevarte al siguiente nivel.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link
-                            to="/b2c"
-                            className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-full font-black text-lg transition-all shadow-xl shadow-slate-900/20 flex items-center justify-center gap-2 hover:-translate-y-1"
-                        >
-                            Ir al Dashboard <ArrowRight size={20} />
-                        </Link>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                        <div className="text-center lg:text-left">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-200">
+                                <Zap size={14} /> El futuro de tus finanzas
+                            </div>
+                            <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-tight mb-6 lg:pr-4">
+                                Toma el control de tu <br className="hidden md:block" />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-600 to-emerald-500">
+                                    salud financiera
+                                </span>
+                            </h1>
+                            <p className="text-xl text-slate-600 max-w-xl mx-auto lg:mx-0 mb-10 font-medium">
+                                Monitorea tu score, gestiona tus tarjetas y mejora tu perfil crediticio con herramientas inteligentes diseñadas para llevarte al siguiente nivel.
+                            </p>
+                            <div className="flex flex-col flex-wrap sm:flex-row gap-4 justify-center lg:justify-start">
+                                <Link
+                                    to="/b2c"
+                                    className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-full font-black text-lg transition-all shadow-xl shadow-slate-900/20 flex items-center justify-center gap-2 hover:-translate-y-1"
+                                >
+                                    Ir al Dashboard <ArrowRight size={20} />
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="w-full relative lg:px-0 mt-8 lg:mt-0">
+                            <HeroAnimation />
+                        </div>
                     </div>
                 </div>
             </section>
