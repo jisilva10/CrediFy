@@ -5,7 +5,6 @@ import {
     Award,
     BrainCircuit,
     CreditCard,
-    Fingerprint,
     Home,
     ShieldCheck,
     LogOut,
@@ -14,9 +13,16 @@ import {
     ChevronDown,
     UserCircle,
     Building,
+    Building2,
     Users,
     Trophy,
-    Gift
+    Gift,
+    Briefcase,
+    Store,
+    ArrowRightLeft,
+    ChevronRight,
+    TrendingUp,
+    ShoppingBag
 } from 'lucide-react';
 import './views.css';
 
@@ -47,20 +53,41 @@ import { BenefitsTiers } from '../components/BenefitsTiers';
 import { ScoreSimulator } from '../components/ScoreSimulator';
 import { CrediPointsDashboard } from '../components/CrediPointsDashboard';
 
+// New Consumer Modules
+import { RiskAlertSystem } from '../components/RiskAlertSystem';
+import { DecisionEngine } from '../components/DecisionEngine';
+import { TrustIndex } from '../components/TrustIndex';
+import { AutomationLayer } from '../components/AutomationLayer';
+
+// New PyME Modules
+import { PymeScore } from '../components/PymeScore';
+import { PymeCreditTracking } from '../components/PymeCreditTracking';
+import { PymeCashflow } from '../components/PymeCashflow';
+import { PymeInvoices } from '../components/PymeInvoices';
+import { PymeInventory } from '../components/PymeInventory';
+
 // --- Dashboard Views (Routed Components) ---
 
 function ScoreView() {
     return (
-        <div className="animate-fade-in w-full mx-auto flex flex-col items-center">
+        <div className="animate-fade-in w-full mx-auto flex flex-col items-center max-w-5xl">
             <div className="w-full text-left mb-6">
-                <h1 className="text-3xl font-black tracking-tight text-slate-900 mb-1">Mi Score Crediticio</h1>
+                <h1 className="text-3xl font-black tracking-tight text-slate-900 mb-1">Mi Score y Perfil</h1>
                 <p className="text-sm text-slate-600 font-bold">Monitorea y mejora tu puntaje para acceder a mejores tasas.</p>
             </div>
+            
+            <DecisionEngine />
+            
+            <div className="w-full grid grid-cols-1 mb-8 gap-8">
+                <ScoreImpactEngine score={742} />
+            </div>
 
-            <ScoreImpactEngine score={742} />
+            <div className="w-full mb-8">
+                <TrustIndex />
+            </div>
 
             {/* Social Benchmarking Banner */}
-            <div className="w-full mt-6 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 flex flex-col gap-4 sm:flex-row shadow-sm text-slate-800 relative overflow-hidden">
+            <div className="w-full bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 flex flex-col gap-4 sm:flex-row shadow-sm text-slate-800 relative overflow-hidden mb-8">
                 <div className="absolute right-0 top-0 opacity-[0.03] pointer-events-none transform translate-x-1/4 -translate-y-1/4 z-0 text-slate-900">
                     <Trophy size={140} />
                 </div>
@@ -82,18 +109,6 @@ function ScoreView() {
             </div>
 
             <ScoreSimulator />
-
-            <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 mt-6 flex flex-col sm:flex-row items-center justify-between text-emerald-900 w-full shadow-sm">
-                <div className="flex items-center gap-3 mb-3 sm:mb-0">
-                    <div className="w-8 h-8 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0">
-                        <BrainCircuit size={18} className="text-emerald-700" />
-                    </div>
-                    <div>
-                        <p className="font-bold text-sm">Estás muy cerca del Nivel Preferencial.</p>
-                        <p className="text-xs opacity-80 font-medium">Sigue así y accede a tasas preferenciales en vehículos y líneas de crédito.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 }
@@ -103,6 +118,9 @@ function CardsView() {
         <div className="animate-fade-in w-full max-w-5xl mx-auto">
             <h1 className="text-3xl font-black tracking-tight text-slate-900 mb-1">Mis Tarjetas</h1>
             <p className="text-sm text-slate-600 font-bold mb-8">Controla tu deuda, simula pagos y ahorra en intereses.</p>
+            
+            <RiskAlertSystem />
+            
             <CreditCardView
                 name="Diners Club Miles" brand="Diners" last4="8492"
                 balance={1250.00} quota={5000} cutDate="12 cada mes" payDate="05 Nov" minPay={120} apr={24.5} hasMora={false}
@@ -111,6 +129,8 @@ function CardsView() {
                 name="Visa Infinite Gold" brand="Visa" last4="1022"
                 balance={840.00} quota={1500} cutDate="18 cada mes" payDate="02 Nov" minPay={45} apr={28.9} hasMora={true}
             />
+            
+            <AutomationLayer />
         </div>
     );
 }
@@ -170,11 +190,47 @@ function CrediPointsView() {
     );
 }
 
+// -- PyME Views --
+function PymeDashboardOverview() {
+    return (
+        <div className="animate-fade-in w-full max-w-5xl mx-auto flex flex-col gap-8">
+            <div className="w-full text-left">
+                <h1 className="text-3xl font-black tracking-tight text-slate-900 flex items-center gap-2">
+                    <Store className="text-indigo-600" /> Credify Business
+                </h1>
+                <p className="text-sm text-slate-600 font-bold">Salud financiera y capacidad de pago para tu negocio.</p>
+            </div>
+            
+            <PymeScore />
+            <PymeCashflow />
+            <div className="grid grid-cols-1 gap-6">
+                <PymeCreditTracking />
+            </div>
+        </div>
+    );
+}
+
+function PymeOperationsView() {
+    return (
+        <div className="animate-fade-in w-full max-w-5xl mx-auto flex flex-col gap-8">
+            <div className="w-full text-left">
+                <h1 className="text-3xl font-black tracking-tight text-slate-900 mb-1">Operación y Liquidez</h1>
+                <p className="text-sm text-slate-600 font-bold">Gestión de activos retenidos y pago a proveedores.</p>
+            </div>
+            
+            <PymeInvoices />
+            <PymeInventory />
+        </div>
+    );
+}
+
 // --- Dashboard Layout Container ---
 export default function B2CView() {
     const location = useLocation();
     const [isLoaded, setIsLoaded] = useState(false);
     const [isMobilePreview, setIsMobilePreview] = useState(false);
+    const [workspaceMode, setWorkspaceMode] = useState('personal'); // 'personal' | 'pyme'
+    const [pymeActiveTab, setPymeActiveTab] = useState('overview'); // 'overview' | 'operations'
     const isIframe = window !== window.parent;
 
     useEffect(() => {
@@ -224,20 +280,35 @@ export default function B2CView() {
         <SidebarProvider>
             <div className="flex h-full bg-slate-50 w-full overflow-hidden">
                 <Sidebar className="border-r border-slate-200">
-                    <SidebarHeader className="p-4 border-b border-slate-100 flex flex-row items-center justify-between h-16">
-                        <span className="font-bold text-xs uppercase tracking-wider text-slate-400 brand-font px-2">Navegación</span>
-                        <SidebarTrigger className="md:hidden" />
+                    <SidebarHeader className="p-4 border-b border-slate-100 flex flex-col justify-center min-h-[5rem] gap-3">
+                        {/* Profile Switcher */}
+                        <div 
+                            className="bg-slate-100/50 hover:bg-slate-100 border border-slate-200 rounded-xl p-2 cursor-pointer transition-colors flex items-center justify-between"
+                            onClick={() => setWorkspaceMode(mode => mode === 'personal' ? 'pyme' : 'personal')}
+                        >
+                            <div className="flex items-center gap-3">
+                                <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold shadow-sm ${workspaceMode === 'personal' ? 'bg-gradient-to-tr from-blue-600 to-emerald-400' : 'bg-gradient-to-tr from-indigo-600 to-violet-500'}`}>
+                                    {workspaceMode === 'personal' ? <UserCircle size={20} /> : <Store size={20} />}
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-xs uppercase tracking-wider font-black text-slate-500 mb-0.5">Viendo Ahora</span>
+                                    <span className="text-sm font-bold text-slate-900">{workspaceMode === 'personal' ? 'Mi Perfil' : 'Mi Negocio'}</span>
+                                </div>
+                            </div>
+                            <ArrowRightLeft size={16} className="text-slate-400" />
+                        </div>
                     </SidebarHeader>
 
                     <SidebarContent className="p-4">
                         <SidebarGroup>
                             <SidebarGroupLabel className="px-2 text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Resumen Financiero</SidebarGroupLabel>
                             <SidebarGroupContent>
+                                {workspaceMode === 'personal' ? (
                                 <SidebarMenu>
                                     <SidebarMenuItem>
                                         <SidebarMenuButton
                                             asChild
-                                            className="px-3"
+                                            className="px-3 py-5 rounded-xl transition-all"
                                             isActive={location.pathname === '/b2c' || location.pathname === '/b2c/score'}
                                         >
                                             <Link to="/b2c/score" className="flex items-center gap-3">
@@ -285,7 +356,7 @@ export default function B2CView() {
                                     <SidebarMenuItem>
                                         <SidebarMenuButton
                                             asChild
-                                            className="px-3"
+                                            className="px-3 py-5 rounded-xl transition-all"
                                             isActive={location.pathname === '/b2c/credipoints'}
                                         >
                                             <Link to="/b2c/credipoints" className="flex items-center gap-3">
@@ -295,6 +366,34 @@ export default function B2CView() {
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
                                 </SidebarMenu>
+                                ) : (
+                                <SidebarMenu>
+                                    <SidebarMenuItem>
+                                        <SidebarMenuButton
+                                            className={`px-3 py-5 rounded-xl transition-all ${pymeActiveTab === 'overview' ? 'bg-indigo-50 hover:bg-indigo-50' : 'hover:bg-slate-100'}`}
+                                            isActive={pymeActiveTab === 'overview'}
+                                            onClick={() => setPymeActiveTab('overview')}
+                                        >
+                                            <div className="flex items-center gap-3 w-full cursor-pointer">
+                                                <Activity size={18} className={pymeActiveTab === 'overview' ? 'text-indigo-600' : 'text-slate-500'} />
+                                                <span className={`font-semibold text-sm ${pymeActiveTab === 'overview' ? 'text-indigo-900' : 'text-slate-600'}`}>Salud & Crédito</span>
+                                            </div>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                    <SidebarMenuItem>
+                                        <SidebarMenuButton
+                                            className={`px-3 py-5 rounded-xl transition-all ${pymeActiveTab === 'operations' ? 'bg-indigo-50 hover:bg-indigo-50' : 'hover:bg-slate-100'}`}
+                                            isActive={pymeActiveTab === 'operations'}
+                                            onClick={() => setPymeActiveTab('operations')}
+                                        >
+                                            <div className="flex items-center gap-3 w-full cursor-pointer">
+                                                <Briefcase size={18} className={pymeActiveTab === 'operations' ? 'text-indigo-600' : 'text-slate-500'} />
+                                                <span className={`font-semibold text-sm ${pymeActiveTab === 'operations' ? 'text-indigo-900' : 'text-slate-600'}`}>Facturas e Inventario</span>
+                                            </div>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                </SidebarMenu>
+                                )}
                             </SidebarGroupContent>
                         </SidebarGroup>
                     </SidebarContent>
@@ -338,9 +437,15 @@ export default function B2CView() {
                         </div>
                     </header>
 
-                    <main className="flex-1 overflow-auto p-4 md:p-8 lg:p-12 w-full">
-                        {/* Sub-routes will be rendered here */}
-                        <Outlet />
+                    <main className="flex-1 overflow-auto p-4 md:p-8 lg:p-12 w-full bg-slate-50 relative">
+                        {workspaceMode === 'personal' ? (
+                            <Outlet />
+                        ) : (
+                            <div className="flex flex-col h-full">
+                                {pymeActiveTab === 'overview' && <PymeDashboardOverview />}
+                                {pymeActiveTab === 'operations' && <PymeOperationsView />}
+                            </div>
+                        )}
                     </main>
                 </SidebarInset>
             </div>
@@ -376,4 +481,4 @@ export default function B2CView() {
 }
 
 // Export the sub-views so App.jsx can route them
-export { ScoreView, CardsView, LoansView, ClientLevelView, CrediPointsView };
+export { ScoreView, CardsView, LoansView, ClientLevelView, CrediPointsView, PymeDashboardOverview, PymeOperationsView };

@@ -64,7 +64,7 @@ export default function LandingView() {
                                 </Link>
                             </div>
                         </div>
-                        <div className="w-full relative lg:px-0 mt-8 lg:mt-0">
+                        <div className="w-full relative lg:px-0 mt-8 lg:mt-0 hidden lg:block">
                             <HeroAnimation />
                         </div>
                     </div>

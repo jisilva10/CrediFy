@@ -4,18 +4,14 @@ import { Gauge } from './ui/gauge-1';
 
 export const ScoreImpactEngine = ({ score }) => {
     return (
-        <div className="card card-elevated relative overflow-hidden border-t-4 border-t-emerald-500 w-full p-6">
+        <div className="card card-elevated relative overflow-hidden border-t-4 border-t-blue-500 w-full p-6 bg-gradient-to-br from-white to-blue-50/30">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                 <div>
                     <h2 className="text-xl font-bold flex items-center gap-2 text-slate-900">
-                        <BrainCircuit className="text-emerald-500" size={24} />
-                        Tu Bienestar Financiero
+                        <BrainCircuit className="text-blue-500" size={24} />
+                        Impacto en tu futuro financiero
                     </h2>
-                    <p className="text-sm text-secondary mt-1">Basado en cómo manejas tu dinero hoy.</p>
-                </div>
-                <div className="text-right">
-                    <p className="text-xs font-bold text-secondary uppercase tracking-wider mb-1">Nivel Actual</p>
-                    <span className="badge font-bold bg-emerald-100/50 text-emerald-700 border border-emerald-200 shadow-sm px-4 py-1 text-sm"><Award size={14} className="mr-1" /> Nivel Sólido</span>
+                    <p className="text-sm text-secondary mt-1 font-medium">Proyección de cómo tus decisiones afectan tu acceso a crédito.</p>
                 </div>
             </div>
 
@@ -23,7 +19,7 @@ export const ScoreImpactEngine = ({ score }) => {
                 <div className="flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-slate-200 shadow-sm relative">
                     <div className="absolute top-4 right-4">
                         <span className="badge badge-green flex items-center gap-1 font-bold">
-                            <ChevronUp size={14} /> Subiste 12 puntos
+                            <ChevronUp size={14} /> En Ascenso
                         </span>
                     </div>
 
@@ -35,39 +31,54 @@ export const ScoreImpactEngine = ({ score }) => {
                             size={160}
                             gradient={true}
                             primary={{
-                                1: "#94a3b8",   // Slate - En Reconstrucción
-                                401: "#06b6d4", // Cyan - Emergente
-                                601: "#10b981", // Emerald - Sólido
-                                751: "#8b5cf6", // Violet - Preferencial
-                                901: "#f59e0b"  // Amber - Elite
+                                1: "#94a3b8",
+                                401: "#06b6d4",
+                                601: "#10b981",
+                                751: "#3b82f6", // Blue for Preferencial
+                                901: "#8b5cf6"  // Violet for Elite
                             }}
                             tickMarks={true}
                             transition={{ length: 1500, delay: 300 }}
                         />
-                        <p className="text-[11px] font-black text-slate-900 tracking-widest uppercase mt-1">Score Crediticio</p>
+                        <p className="text-[11px] font-black text-slate-900 tracking-widest uppercase mt-1">Score Proyectado</p>
                     </div>
 
                     <div className="mt-2 text-center">
-                        <p className="text-xs font-medium text-slate-500">Próxima meta: <b className="text-slate-800">Nivel Preferencial (751)</b></p>
-                        <p className="text-[10px] text-emerald-700 font-bold mt-1">Te faltan {751 - score} puntos para el siguiente nivel.</p>
+                        <p className="text-xs font-medium text-slate-500">Tendencia a 30 días</p>
+                        <p className="text-sm text-blue-600 font-black mt-1">+42 Puntos Estimados</p>
                     </div>
                 </div>
 
-                <div className="col-span-1 md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <p className="text-xs font-bold uppercase tracking-wider text-green-700 mb-3 flex items-center gap-1"><ChevronUp size={14} /> Buenos Hábitos</p>
-                        <ul className="text-sm space-y-2 text-slate-600 font-medium">
-                            <li className="flex justify-between items-center"><span className="flex items-center gap-1.5"><CheckCircle2 size={12} className="text-green-500" /> Pagar todo el mes</span> <span className="font-bold text-green-700">+15</span></li>
-                            <li className="flex justify-between items-center"><span className="flex items-center gap-1.5"><CheckCircle2 size={12} className="text-green-500" /> Uso moderado (&lt;50%)</span> <span className="font-bold text-green-700">+8</span></li>
-                            <li className="flex justify-between items-center"><span className="flex items-center gap-1.5"><CheckCircle2 size={12} className="text-green-500" /> Pagar antes de fecha</span> <span className="font-bold text-green-700">+5</span></li>
+                <div className="col-span-1 md:col-span-2 flex flex-col gap-4">
+                    {/* Positive Projections */}
+                    <div className="bg-white p-5 rounded-xl border border-emerald-100 shadow-sm relative overflow-hidden">
+                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500"></div>
+                        <p className="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-3 flex items-center gap-1"><ChevronUp size={16} /> Si mantienes tus hábitos...</p>
+                        <ul className="text-sm space-y-3 text-slate-700 font-medium">
+                            <li className="flex items-start gap-2">
+                                <CheckCircle2 size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                                <span><b className="text-slate-900">Tu score subirá a ~784</b> en 30 días si mantienes tu pago puntual de este mes.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <CheckCircle2 size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                                <span><b className="text-slate-900">Acceso a nivel Preferencial:</b> Pagar $50 más este mes te aseguraría calificar para el beneficio Black.</span>
+                            </li>
                         </ul>
                     </div>
-                    <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <p className="text-xs font-bold uppercase tracking-wider text-red-600 mb-3 flex items-center gap-1"><ChevronDown size={14} /> Alertas</p>
-                        <ul className="text-sm space-y-2 text-slate-600 font-medium">
-                            <li className="flex justify-between items-center"><span className="flex items-center gap-1.5"><Activity size={12} className="text-red-400" /> Pagos atrasados</span> <span className="font-bold text-red-600">-25</span></li>
-                            <li className="flex justify-between items-center"><span className="flex items-center gap-1.5"><Activity size={12} className="text-orange-600" /> Deuda muy alta</span> <span className="font-bold text-orange-600">-10</span></li>
-                            <li className="flex justify-between items-center"><span className="flex items-center gap-1.5"><Activity size={12} className="text-orange-600" /> Solo pago mínimo</span> <span className="font-bold text-orange-600">-5</span></li>
+
+                    {/* Optimization Opportunities */}
+                    <div className="bg-white p-5 rounded-xl border border-amber-100 shadow-sm relative overflow-hidden">
+                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-amber-500"></div>
+                        <p className="text-xs font-bold uppercase tracking-wider text-amber-700 mb-3 flex items-center gap-1"><Activity size={16} /> Áreas de mejora rápida</p>
+                        <ul className="text-sm space-y-3 text-slate-700 font-medium">
+                            <li className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></div>
+                                <span>Si reduces tu uso de línea de tu tarjeta Diners al 25% (pago de $125), <b className="text-amber-700">bajarías un nivel de riesgo de inmediato</b>.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></div>
+                                <span>Tu probabilidad de atraso disminuye si mantienes tu puntualidad por <b className="text-slate-900">2 meses más seguidos</b>.</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
